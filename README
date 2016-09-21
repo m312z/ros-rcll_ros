@@ -1,0 +1,6 @@
+RoboCup Logistics League ROS Integration Metapackage
+====================================================
+
+This metapackage provides links to a small set of ROS nodes that can be
+used to integrate a robot system with the RoboCup Logistics League
+(http://www.robocup-logistics.org), and its referee box in particular.
