@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <name>rcll_ros</name>
+  <version>0.1.0</version>
+  <description>ROS packages related to RoboCup Logistics League (metapackage)</description>
+
+  <author email="niemueller@kbsg.rwth-aachen.de">Tim Niemueller</author>
+  <maintainer email="niemueller@kbsg.rwth-aachen.de">Tim Niemueller</maintainer>
+
+  <license>BSD and GPLv2</license>
+
+  <url type="website">http://wiki.ros.org/rcll_ros</url>
+  <url type="repository">http://wiki.ros.org/timn/rcll_ros</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>rcll_refbox_peer</run_depend>
+  <run_depend>rcll_ros_msgs</run_depend>
+
+  <export>
+    <metapackage />
+  </export>
+</package>
