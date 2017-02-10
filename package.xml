@@ -16,7 +16,9 @@
   <run_depend>rcll_refbox_peer</run_depend>
   <run_depend>rcll_ros_msgs</run_depend>
 
+  <!-- No longer a meta package, contains launch files
   <export>
     <metapackage />
   </export>
+  -->
 </package>
