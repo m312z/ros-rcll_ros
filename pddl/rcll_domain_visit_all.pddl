@@ -1,14 +1,15 @@
 (define (domain rcll-visit)
-	(:requirements :adl :strips :typing)
+	(:requirements :strips :typing :durative-actions)
 
 	(:types location - object
 					machine - location
 					robot - object)
 	(:predicates (at ?r - robot ?m - location)
 							 (visited ?m - machine))
-	(:action move
+	(:durative-action move
 					 :parameters (?r - robot ?from - location ?to - machine)
-					 :precondition (at ?r ?from)
-					 :effect (and (not (at ?r ?from)) (at ?r ?to) (visited ?to))
+					 :duration ( = ?duration 60)
+					 :condition (at start (at ?r ?from))
+					 :effect (and (at start (not (at ?r ?from))) (at end (at ?r ?to)) (at end (visited ?to)))
 	)
 )
