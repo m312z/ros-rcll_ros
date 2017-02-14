@@ -2,7 +2,7 @@
 
 <launch>
 	<!-- Basic Simulation Integration -->
-	<!-- <include file="$(find rcll_fawkes_sim)/launch/rcll_fawkes_sim_all_1robot.launch" /> -->
+	<include file="$(find rcll_fawkes_sim)/launch/rcll_fawkes_sim_all_1robot.launch" />
 
 	<!-- domain file -->
 	<param name="/rosplan/domain_path" value="$(find rcll_ros)/pddl/rcll_domain_visit_all.pddl" />
