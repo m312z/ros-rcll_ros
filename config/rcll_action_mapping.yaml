@@ -11,8 +11,19 @@
 #  2. the available skills through the Behavior Engine
 #     (skill-set depends on platform and domain used).
 #
-# The mapping can use the following elements as a pattern modification for
-# the skill string.
+# A mapping is a tuple of two elements:
+#  - parameter key or path element (left of the colon)
+#  - parameter value
+# These elements are described in the following.
+#
+# The configuration key or path element is the PDDL operator name. If
+# the name contains dashes (-), they are replaced by an underscores (_)
+# each. This is because rosparam cannot handle dashes in parameter
+# path elements. For example, for an action "mark-visited" the parameter
+# path would be "mark_visited".
+#
+# The mapping value can use the following elements as a pattern
+# modification for the skill string.
 # Note: parameters are always converted to lower-case by ROSPlan (at least
 #       in the default combination with POPF).
 #
@@ -66,3 +77,12 @@ action_mappings:
   move: ppgoto{place=?(to)S}
   enter_field: drive_into_field{team=?(team-color)S, wait=?(r|/r-1/0.0/|/r-2/3.0/|/r-3/6.0/)f}
   hello_world: say{text="Hello World", wait=true}
+
+# = No-Op Action =
+# Some actions you may not want to pass to the BE but always want them to
+# succeed, for example, actions used to set certain fluents. List them
+# in the following configuration and the interface will immediately report them
+# as succeeded and handle the effects appropriately.
+# Note: if a variable filter is set this still only applies to matching actions
+# for which no action mapping has been defined.
+succeed_actions: [mark-visited]
