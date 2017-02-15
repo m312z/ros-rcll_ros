@@ -30,11 +30,17 @@
 		<param name="max_dispatch_attempts" value="2" />
 	</node>
 
+	<!-- Load domain-specific action mapping -->
   <rosparam command="load" file="$(find rcll_ros)/config/rcll_action_mapping.yaml" />
+  <!-- Parameter of action used to identify robot-specific actions -->
   <param name="robot_identifier/var_name" value="r" />
   <param name="robot_identifier/var_type" value="robot" />
-  <node name="rosplan_interface_behaviorengine" pkg="rosplan_interface_behaviorengine" type="rosplan_interface_behaviorengine" respawn="false" output="screen">
-    <remap from="skiller" to="robot1/skiller" />
+  
+  <node name="rosplan_interface_behaviorengine" pkg="rosplan_interface_behaviorengine"
+        type="rosplan_interface_behaviorengine" respawn="false" output="screen">
+	  <!-- Remap skiller topic to robot namespace -->
+	  <remap from="skiller" to="robot1/skiller" />
+	  <!-- The value of the identifier variable specified above to filter for -->
     <param name="robot_identifier/var_value" value="r-1" />
   </node>
 </launch>
