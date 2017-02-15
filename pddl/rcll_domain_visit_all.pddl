@@ -3,7 +3,14 @@
 
 	(:types location - object
 					machine - location
-					robot - object)
+					robot - object
+					team-color - object)
+
+  (:constants START - location)
+	;						CYAN - team-color
+	;						MAGENTA - team-color
+	;						)
+
 	(:predicates (at ?r - robot ?m - location)
 							 (visited ?m - machine))
 	(:durative-action move
