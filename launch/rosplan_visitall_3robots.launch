@@ -30,7 +30,12 @@
 		<param name="max_dispatch_attempts" value="2" />
 	</node>
 
+	<!-- Load domain-specific action mapping -->
   <rosparam command="load" file="$(find rcll_ros)/config/rcll_action_mapping.yaml" />
+  <!-- Load predicates which the interface should not touch (assert/retract) -->
+  <rosparam command="load" file="$(find rcll_ros)/config/rcll_visitall_ignored_effect_predicates.yaml" />
+
+  <!-- Parameter of action used to identify robot-specific actions -->
   <param name="robot_identifier/var_name" value="r" />
   <param name="robot_identifier/var_type" value="robot" />
 
