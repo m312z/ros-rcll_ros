@@ -5,4 +5,4 @@
 # the effects of an action. Configure these predicates as a list.
 # Note that these predicates will not be updated and ignored for any action,
 # not for just specific ones.
-ignored_effect_predicates: [at]
+#ignored_effect_predicates: [at]
