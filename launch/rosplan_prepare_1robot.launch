@@ -44,4 +44,10 @@
 		<remap from="rcll/send_prepare_machine" to="/robot1/rcll/send_prepare_machine" />
 	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_prepare_ifc_rcllrefbox.yaml" />
 	</node>
+
+	<node name="rosplan_kbupdater_machine_info" pkg="rosplan_interface_rcllrefbox"
+        type="rosplan_kb_updater_rcll_machine_info" respawn="false" output="screen">
+		<remap from="rcll/machine_info" to="/robot1/rcll/machine_info" />
+	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_prepare_kbupdater_machine_info.yaml" />
+	</node>
 </launch>
