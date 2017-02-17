@@ -27,10 +27,12 @@ mps_type_predicate: mps-type
 #          (mps-state C-BS IDLE) (mps-state R-CS1 PREPARED)
 mps_state_predicate: mps-state
 
-# MPS state: ternary predicate denoting the rings at an RS.
-# Example: (rs-ring-spec ?m - mps ?r1 ?r2 - ring-color)
-#          (rs-ring-spec C-RS1 RING_GREEN RING_BLUE)
+# MPS state: binary predicate denoting the rings at an RS.
+# Example: (rs-ring-spec ?m - mps ?r - ring-color)
+#          (rs-ring-spec C-RS1 RING_GREEN)
 # Note that the color attribute values are specified below.
+# Also not that two predicates will exist for each machine, one for each
+# available ring color.
 rs_predicate: rs-ring-spec
 
 # Name argument to predicates.
@@ -51,8 +53,7 @@ type_value_rs: RS
 state_argument: s
 
 # Ring variable names for RS ring info
-rs_ring1_argument: r1
-rs_ring2_argument: r2
+rs_ring_argument: r
 # Value mapping for rings
 rs_ring_value_blue: RING_BLUE
 rs_ring_value_green: RING_GREEN
