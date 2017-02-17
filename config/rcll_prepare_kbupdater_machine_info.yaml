@@ -1,0 +1,61 @@
+# = MachineInfo Knowledge Base Updater Config =
+# The kb updater tracks information from the refbox, compares it to
+# the information in the knowledge base, and issues update as necessary.
+
+# == Type of Machine Instances ==
+# It will check if instances of this type with the machine names exist,
+# e.g., if an instance C-BS exists of the given instance type.
+# Note that only machines for the active team color are added (or the
+# filtered list the refbox provides us with, really).
+machine_instance_type: mps
+
+# == Predicate names ==
+# The predicates are retrieved and compare against the relevant bits
+# of the machine info. Leave empty to ignore a certain predicate type.
+
+# Note that the type values may be configured, but the machine names
+# must always be the canonical values from the game, i.e., C-BS, M-DS,
+# etc.
+
+# MPS type: binary predicate denoting type of a machine.
+# Example: (mps-type ?m - mps ?t - mps-typename)
+#          (mps-type C-BS BS)
+mps_type_predicate: mps-type
+
+# MPS state: binary predicate denoting state of a machine.
+# Example: (mps-state ?m - mps ?t - mps-statename)
+#          (mps-state C-BS IDLE) (mps-state R-CS1 PREPARED)
+mps_state_predicate: mps-state
+
+# MPS state: ternary predicate denoting the rings at an RS.
+# Example: (rs-ring-spec ?m - mps ?r1 ?r2 - ring-color)
+#          (rs-ring-spec C-RS1 RING_GREEN RING_BLUE)
+# Note that the color attribute values are specified below.
+rs_predicate: rs-ring-spec
+
+# Name argument to predicates.
+# This argument is special as it is used to identify a specific instance
+# of the predicate specific to a machine. It is applied to ALL predicates
+# configured above.
+name_argument: m
+
+# Type variable name for MPS type predicate.
+type_argument: t
+# Value mapping from MachineInfo values to predicate argument values.
+type_value_bs: BS
+type_value_cs: CS
+type_value_ds: DS
+type_value_rs: RS
+
+# State variable name for MPS state predicate.
+state_argument: s
+
+# Ring variable names for RS ring info
+rs_ring1_argument: r1
+rs_ring2_argument: r2
+# Value mapping for rings
+rs_ring_value_blue: RING_BLUE
+rs_ring_value_green: RING_GREEN
+rs_ring_value_orange: RING_ORANGE
+rs_ring_value_yellow: RING_YELLOW
+
