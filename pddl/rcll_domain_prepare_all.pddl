@@ -45,6 +45,7 @@
 	(:predicates
 	 (mps-type ?m - mps ?t - mps-typename)
 	 (mps-state ?m - mps ?s - mps-statename)
+	 (rs-ring-spec ?m - mps ?r1 ?r2 - ring-color)
 	 (prepared ?m - mps)
 	)
 	
