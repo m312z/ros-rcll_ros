@@ -45,7 +45,7 @@
 	(:predicates
 	 (mps-type ?m - mps ?t - mps-typename)
 	 (mps-state ?m - mps ?s - mps-statename)
-	 (rs-ring-spec ?m - mps ?r1 ?r2 - ring-color)
+	 (rs-ring-spec ?m - mps ?r - ring-color)
 	 (prepared ?m - mps)
 	)
 	
@@ -73,7 +73,7 @@
 	(:action prepare-rs
 					 :parameters (?m - mps ?rc - ring-color)
 					 ;:precondition (and (mps-type ?m RS) (mps-state ?m IDLE))
-					 :precondition (and (mps-type ?m RS))
+					 :precondition (and (mps-type ?m RS) (rs-ring-spec ?m ?rc))
 					 :effect (prepared ?m)
 	)
 )
