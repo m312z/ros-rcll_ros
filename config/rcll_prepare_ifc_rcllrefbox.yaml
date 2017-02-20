@@ -59,3 +59,12 @@ preparg:
 # Note that these predicates will not be updated and ignored for any action,
 # not for just specific ones.
 ignored_effect_predicates: [mps-state]
+
+# = No-Op Action =
+# Some actions you may not want to pass to the BE but always want them to
+# succeed, for example, actions used to set certain fluents. List them
+# in the following configuration and the interface will immediately report them
+# as succeeded and handle the effects appropriately.
+# Note: if a variable filter is set this still only applies to matching actions
+# for which no action mapping has been defined.
+succeed_actions: [cs-modeswap-retrieved, cs-modeswap-mounted]
