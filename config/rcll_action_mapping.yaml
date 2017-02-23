@@ -74,9 +74,14 @@
 # can be referenced more than once.
 
 action_mappings:
-  move: ppgoto{place=?(to)S}
+  move: ppgoto{place="?(to)Y?(to-side|/INPUT/-I/|/OUTPUT/-O/)Y"}
+  #move: ppgoto{place=?(to)S}
   enter_field: drive_into_field{team=?(team-color)S, wait=?(r|/r-1/0.0/|/r-2/3.0/|/r-3/6.0/)f}
-  hello_world: say{text="Hello World", wait=true}
+  #, atmps="CONVEYOR"
+  wp_get_shelf: get_product_from{place=?(m)S, shelf=?(spot)S}
+  wp_put: bring_product_to{place=?(m)S, side="input"}
+  wp_get: get_product_from{place=?(m)S, side=?(side)s}
+  wp_discard: ax12gripper{command="OPEN"}
 
 # = No-Op Action =
 # Some actions you may not want to pass to the BE but always want them to
@@ -85,4 +90,4 @@ action_mappings:
 # as succeeded and handle the effects appropriately.
 # Note: if a variable filter is set this still only applies to matching actions
 # for which no action mapping has been defined.
-succeed_actions: [mark-visited]
+#succeed_actions: [mark-visited]
