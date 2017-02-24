@@ -75,6 +75,8 @@
 
 action_mappings:
   move: ppgoto{place="?(to)Y?(to-side|/INPUT/-I/|/OUTPUT/-O/)Y"}
+  move_wp_put: ppgoto{place="?(to)Y-I"}
+  move_wp_get: ppgoto{place="?(to)Y?(to-side|/INPUT/-I/|/OUTPUT/-O/)Y"}
   #move: ppgoto{place=?(to)S}
   enter_field: drive_into_field{team=?(team-color)S, wait=?(r|/r-1/0.0/|/r-2/3.0/|/r-3/6.0/)f}
   #, atmps="CONVEYOR"
