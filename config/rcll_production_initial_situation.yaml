@@ -1,0 +1,84 @@
+objects:
+  robot: R-1
+  order: o1
+  workpiece: wp1
+  cap-carrier: [cg1, cg2, cg3]
+  mps: [C-BS, C-CS1, C-CS2, C-DS, C-RS1, C-RS2]
+  team-color: CYAN
+
+init:
+  mps-type:
+    - [C-BS, BS]
+    - [C-CS1, CS]
+    - [C-CS2, CS]
+    - [C-DS, DS]
+    - [C-RS1, RS]
+    - [C-RS2, RS]
+  location-free:
+    - [START, INPUT]
+    - [C-BS,  INPUT]
+    - [C-BS,  OUTPUT]
+    - [C-CS1, INPUT]
+    - [C-CS1, OUTPUT]
+    - [C-CS2, INPUT]
+    - [C-CS2, OUTPUT]
+    - [C-DS,  INPUT]
+    - [C-DS,  OUTPUT]
+    - [C-RS1, INPUT]
+    - [C-RS1, OUTPUT]
+    - [C-RS2, INPUT]
+    - [C-RS2, OUTPUT]
+
+  cs-can-perform:
+    - [C-CS1, CS_RETRIEVE]
+    - [C-CS2, CS_RETRIEVE]
+  cs-free:
+  - C-CS1
+  - C-CS2
+  wp-base-color:
+    - [wp1, BASE_NONE]
+  wp-cap-color:
+    - [wp1, CAP_NONE]
+    - [cg1, CAP_GREY]
+  wp-ring1-color:
+    - [wp1, RING_NONE]
+  wp-ring2-color:
+    - [wp1, RING_NONE]
+  wp-ring3-color:
+    - [wp1, RING_NONE]
+  wp-unused:
+    - wp1
+  robot-waiting: [R-1]
+  #, R-2, R-3]
+  # mps-state:
+  #   - [C-BS,  IDLE]
+  #   - [C-CS1, IDLE]
+  #   - [C-CS2, IDLE]
+  #   - [C-DS,  IDLE]
+  #   - [C-RS1, IDLE]
+  #   - [C-RS2, IDLE]
+
+  wp-on-shelf:
+    - [cg1, C-CS2, LEFT]
+
+  # rs-ring-spec:
+  #   - [C-RS1, RING_GREEN]
+  #   - [C-RS1, RING_YELLOW]
+  #   - [C-RS2, RING_BLUE]
+  #   - [C-RS2, RING_ORANGE]
+
+  order-complexity:
+    - [o1, C3]
+  order-base-color:
+    - [o1, BASE_BLACK]
+  order-ring1-color:
+    - [o1, RING_GREEN]
+  order-ring2-color:
+    - [o1, RING_BLUE]
+  order-ring3-color:
+    - [o1, RING_ORANGE]
+  order-cap-color:
+    - [o1, CAP_GREY]
+
+goal:
+  order-fulfilled: [o1]
