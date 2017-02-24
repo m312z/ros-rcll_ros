@@ -68,4 +68,6 @@ ignored_effect_predicates: [mps-state]
 # Note: if a variable filter is set this still only applies to matching actions
 # for which no action mapping has been defined.
 succeed_actions: [cs-modeswap-retrieved, cs-modeswap-mounted,
-                  bs-dispense, cs-mount-cap, cs-retrieve-cap, fulfill-order-c0]
+                  bs-dispense, cs-mount-cap, cs-retrieve-cap,
+                  rs-mount-ring1, rs-mount-ring2, rs-mount-ring3,
+                  fulfill-order-c0, fulfill-order-c1, fulfill-order-c2, fulfill-order-c3]
