@@ -30,7 +30,7 @@
 		mps-side - object
 		base-color - object
 		cap-color - object
-		ring-color object
+		ring-color - object
 		ds-gate - object
 		cs-operation - object
 		cs-statename - object
