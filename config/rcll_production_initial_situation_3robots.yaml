@@ -1,0 +1,5 @@
+objects:
+  robot: [R-1, R-2, R-3]
+
+init:
+  robot-waiting: [R-1, R-2, R-3]
