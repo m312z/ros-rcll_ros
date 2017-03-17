@@ -54,6 +54,21 @@
 	 (cs-can-perform C-CS2 CS_RETRIEVE)
 	 (cs-free C-CS1)
 	 (cs-free C-CS2)
+	 ; Additional base number handling static predicates
+	 (rs-sub THREE TWO ONE)
+	 (rs-sub THREE ONE TWO)
+	 (rs-sub THREE ZERO THREE)
+	 (rs-sub TWO TWO ZERO)
+	 (rs-sub TWO ONE ONE)
+	 (rs-sub TWO ZERO TWO)
+	 (rs-sub ONE ONE ZERO)
+	 (rs-sub ONE ZERO ONE)
+	 (rs-sub ZERO ZERO ZERO)
+	 (rs-inc ZERO ONE)
+	 (rs-inc ONE TWO)
+	 (rs-inc TWO THREE)
+	 (rs-filled-with C-RS1 ZERO)
+	 (rs-filled-with C-RS2 ZERO)
 	 (wp-base-color wp1 BASE_NONE)
 	 (wp-cap-color wp1 CAP_NONE)
 	 (wp-ring1-color wp1 RING_NONE)
@@ -71,12 +86,17 @@
  	 (mps-state C-RS2 IDLE)
 
 	 (wp-cap-color cc1 CAP_GREY)
+	 (wp-cap-color cc2 CAP_GREY)
+	 (wp-cap-color cc3 CAP_GREY)
 	 (wp-on-shelf cc1 C-CS1 LEFT)
+	 (wp-on-shelf cc2 C-CS1 MIDDLE)
+	 (wp-on-shelf cc3 C-CS1 RIGHT)
 
-	 (rs-ring-spec C-RS1 RING_GREEN)
-	 (rs-ring-spec C-RS1 RING_YELLOW)
-	 (rs-ring-spec C-RS2 RING_BLUE)
-	 (rs-ring-spec C-RS2 RING_ORANGE)
+	 (rs-ring-spec C-RS1 RING_GREEN ZERO)
+	 (rs-ring-spec C-RS1 RING_YELLOW ZERO)
+	 (rs-ring-spec C-RS2 RING_BLUE ONE)
+	 (rs-ring-spec C-RS2 RING_ORANGE TWO)
+
 
 	 ; C1 order
 	 ; (order-complexity o1 c1)
