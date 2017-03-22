@@ -147,6 +147,7 @@
 											 (bs-prepared-color ?m ?basecol) (bs-prepared-side ?m ?side)
 											 (wp-base-color ?wp BASE_NONE) (wp-unused ?wp))
 		:effect (and (wp-at ?wp ?m ?side)
+								 (not (bs-prepared-color ?m ?basecol)) (not (bs-prepared-side ?m ?side))
 								 (not (wp-base-color ?wp BASE_NONE)) (wp-base-color ?wp ?basecol)
 								 (not (wp-unused ?wp)) (wp-usable ?wp)
 								 (not (mps-state ?m PROCESSING)) (mps-state ?m READY-AT-OUTPUT))
