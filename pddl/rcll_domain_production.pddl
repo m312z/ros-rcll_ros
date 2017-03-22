@@ -29,7 +29,9 @@
 		mps-statename - object
 		mps-side - object
 		base-color - object
+		product-base-color - base-color
 		cap-color - object
+		product-cap-color - cap-color
 		ring-color - object
 		product-ring-color - ring-color
 		ds-gate - object
@@ -48,8 +50,10 @@
 		BS CS DS RS - mps-typename
 		IDLE BROKEN PREPARED PROCESSING PROCESSED WAIT-IDLE READY-AT-OUTPUT DOWN - mps-statename
 		INPUT OUTPUT - mps-side
-		BASE_NONE BASE_RED BASE_BLACK BASE_SILVER - base-color
-		CAP_NONE CAP_BLACK CAP_GREY - cap-color
+		BASE_NONE - base-color
+		BASE_RED BASE_BLACK BASE_SILVER - product-base-color
+		CAP_NONE - cap-color
+		CAP_BLACK CAP_GREY - product-cap-color
 		GATE-1 GATE-2 GATE-3 - ds-gate
 		RING_NONE - ring-color
 		RING_BLUE RING_GREEN RING_ORANGE RING_YELLOW - product-ring-color
@@ -68,7 +72,7 @@
 		(robot-waiting ?r - robot)
 		(mps-type ?m - mps ?t - mps-typename)
 		(mps-state ?m - mps ?s - mps-statename)
-		(bs-prepared-color ?m - mps ?col - base-color)
+		(bs-prepared-color ?m - mps ?col - product-base-color)
 		(bs-prepared-side ?m - mps ?side - mps-side)
 		(rs-ring-spec ?m - mps ?r - product-ring-color ?rn - ring-num)
 		(cs-can-perform ?m - mps ?op - cs-operation)
@@ -81,11 +85,11 @@
 		(rs-sub ?minuend ?subtrahend ?difference - ring-num)
 		(rs-inc ?summand ?sum - ring-num)
 		(order-complexity ?ord - order ?com - order-complexity-value)
-		(order-base-color ?ord - order ?col - base-color)
+		(order-base-color ?ord - order ?col - product-base-color)
 		(order-ring1-color ?ord - order ?col - product-ring-color)
 		(order-ring2-color ?ord - order ?col - product-ring-color)
 		(order-ring3-color ?ord - order ?col - product-ring-color)
-		(order-cap-color ?ord - order ?col - cap-color)
+		(order-cap-color ?ord - order ?col - product-cap-color)
 		(order-fulfilled ?ord - order)
 		(order-delivery-begin ?ord - order)
 		(order-delivery-end ?ord - order)
@@ -118,7 +122,7 @@
 
 	
 	(:action prepare-bs
-		:parameters (?m - mps ?side - mps-side ?bc - base-color)
+		:parameters (?m - mps ?side - mps-side ?bc - product-base-color)
 		:precondition (and (mps-type ?m BS) (mps-state ?m IDLE))
 		:effect (and (not (mps-state ?m IDLE)) (mps-state ?m PROCESSING)
 								 (bs-prepared-color ?m ?bc) (bs-prepared-side ?m ?side))
@@ -138,7 +142,7 @@
 	)
 
 	(:action bs-dispense
-		:parameters (?m - mps ?side - mps-side ?wp - workpiece ?basecol - base-color)
+		:parameters (?m - mps ?side - mps-side ?wp - workpiece ?basecol - product-base-color)
 		:precondition (and (mps-type ?m BS) (mps-state ?m PROCESSING)
 											 (bs-prepared-color ?m ?basecol) (bs-prepared-side ?m ?side)
 											 (wp-base-color ?wp BASE_NONE) (wp-unused ?wp))
@@ -174,8 +178,9 @@
 	)
 	
 	(:action prepare-rs
-		:parameters (?m - mps ?rc - ring-color ?rn - ring-num)
-		:precondition (and (mps-type ?m RS) (mps-state ?m IDLE) (rs-ring-spec ?m ?rc ?rn))
+		:parameters (?m - mps ?rc - product-ring-color ?rs-before ?rs-after ?r-req - ring-num)
+		:precondition (and (mps-type ?m RS) (mps-state ?m IDLE) (rs-ring-spec ?m ?rc ?r-req)
+											 (rs-filled-with ?m ?rs-before) (rs-sub ?rs-before ?r-req ?rs-after))
 		:effect (and (not (mps-state ?m IDLE)) (mps-state ?m PREPARED)
 								 (rs-prepared-color ?m ?rc))
 	)
@@ -360,7 +365,7 @@
 
 	(:action fulfill-order-c0
 		:parameters (?ord - order ?wp - workpiece ?m - mps
-		             ?basecol - base-color ?capcol - cap-color)
+		             ?basecol - product-base-color ?capcol - product-cap-color)
 		:precondition (and (wp-at ?wp ?m INPUT) (wp-usable ?wp)
 											 (mps-state ?m PROCESSING)
 											 (order-complexity ?ord C0)
@@ -374,7 +379,7 @@
 
 	(:action fulfill-order-c1
 		:parameters (?ord - order ?wp - workpiece ?m - mps
-		             ?basecol - base-color ?capcol - cap-color
+		             ?basecol - product-base-color ?capcol - product-cap-color
 		             ?ring1col - product-ring-color)
 
 		:precondition (and (wp-at ?wp ?m INPUT) (wp-usable ?wp)
@@ -389,7 +394,7 @@
 
 	(:action fulfill-order-c2
 		:parameters (?ord - order ?wp - workpiece ?m - mps
-		             ?basecol - base-color ?capcol - cap-color
+		             ?basecol - product-base-color ?capcol - product-cap-color
 		             ?ring1col ?ring2col - product-ring-color)
 
 		:precondition (and (wp-at ?wp ?m INPUT) (wp-usable ?wp)
@@ -407,7 +412,7 @@
 
 	(:action fulfill-order-c3
 		:parameters (?ord - order ?wp - workpiece ?m - mps
-		             ?basecol - base-color ?capcol - cap-color
+		             ?basecol - product-base-color ?capcol - product-cap-color
 		             ?ring1col ?ring2col ?ring3col - product-ring-color)
 
 		:precondition (and (wp-at ?wp ?m INPUT) (wp-usable ?wp)
