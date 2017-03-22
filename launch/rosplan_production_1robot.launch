@@ -24,8 +24,17 @@
 		<param name="problem_path" value="$(find rcll_ros)/data/problem.pddl" />
 		<param name="strl_file_path" value="$(find rcll_ros)/data/plan.strl" />
 
-		<!-- to run the planner -->
-		<param name="planner_command" value="timeout 30 $(find rosplan_planning_system)/common/bin/popf -n DOMAIN PROBLEM" />
+		<!-- the following configures the popf any-time version to
+		     optimize for a given time. This has the advantage of allowing
+		     for more time to find a higher quality solution. The
+		     drawbacks are that it fails to find a plan if that is not
+		     possible within the given time limit and that if will always
+		     use the given time even though the plan quality does not
+		     improve further.  You may disable this with the other
+		     "non-timeout" command without the "-n" flag to popf.
+		-->
+		<!-- <param name="planner_command" value="timeout 30 $(find rosplan_planning_system)/common/bin/popf -n DOMAIN PROBLEM" /> -->
+		<param name="planner_command" value="$(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
 		<param name="generate_default_problem" value="true" />
 		<param name="max_dispatch_attempts" value="2" />
 	</node>
