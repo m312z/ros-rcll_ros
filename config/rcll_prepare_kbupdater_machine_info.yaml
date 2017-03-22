@@ -62,3 +62,9 @@ rs_ring_value_green: RING_GREEN
 rs_ring_value_orange: RING_ORANGE
 rs_ring_value_yellow: RING_YELLOW
 
+# The values you choose for handling the number of required
+# rings. Must be a list and it must denote the symbols in
+# the numeric order from 0 to 3.
+# These are expected to exist, e.g., as constants. /No/ instances
+# will be created automatically.
+rs_ring_num_values: [ZERO, ONE, TWO, THREE]
