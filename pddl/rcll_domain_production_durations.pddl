@@ -17,7 +17,7 @@
 ;
 ;  Read the full text in the LICENSE.GPL file in the doc directory.
 
-(define (domain rcll-production)
+(define (domain rcll-production-durative)
 	(:requirements :strips :typing :durative-actions :numeric-fluents)
 
 	(:types
@@ -60,10 +60,7 @@
 		CS_RETRIEVE CS_MOUNT - cs-operation
 		C0 C1 C2 C3 - order-complexity-value
 		LEFT MIDDLE RIGHT - shelf-spot
-	)
-
-	(:functions
-	 (path-length ?from - location ?from-side - mps-side ?to - location ?to-side - mps-side)
+		ZERO ONE TWO THREE - ring-num
 	)
 
 	(:predicates
@@ -94,8 +91,6 @@
 		(order-ring3-color ?ord - order ?col - product-ring-color)
 		(order-cap-color ?ord - order ?col - product-cap-color)
 		(order-fulfilled ?ord - order)
-		(order-delivery-begin ?ord - order)
-		(order-delivery-end ?ord - order)
 		(order-gate ?ord - order ?gate - ds-gate)
 		(wp-unused ?wp - workpiece)
 		(wp-usable ?wp - workpiece)
