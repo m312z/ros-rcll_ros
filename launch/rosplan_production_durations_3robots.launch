@@ -25,7 +25,7 @@
 		<param name="strl_file_path" value="$(find rcll_ros)/data/plan.strl" />
 
 		<!-- to run the planner -->
-		<!-- <param name="planner_command" value="timeout 150 $(find rosplan_planning_system)/common/bin/popf -n DOMAIN PROBLEM" /> -->
+		<!-- <param name="planner_command" value="timeout 30 $(find rosplan_planning_system)/common/bin/popf -n DOMAIN PROBLEM" /> -->
 		<param name="planner_command" value="$(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
 		<param name="generate_default_problem" value="true" />
 		<param name="max_dispatch_attempts" value="2" />
@@ -71,12 +71,11 @@
 	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_prepare_kbupdater_machine_info.yaml" />
 	</node>
 
-	<!--
 	<node name="rosplan_kbupdater_order_info" pkg="rosplan_interface_rcllrefbox"
         type="rosplan_kb_updater_rcll_order_info" respawn="false" output="screen">
 		<remap from="rcll/order_info" to="/robot1/rcll/order_info" />
-	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_produce_c0_kbupdater_order_info.yaml" />
-	</node> -->
+	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_production_order_info.yaml" />
+	</node>
 
   <node name="rosplan_initial_situation" pkg="rosplan_initial_situation"
         type="rosplan_initial_situation" respawn="false" output="screen">
