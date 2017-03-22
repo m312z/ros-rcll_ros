@@ -24,8 +24,8 @@
 		R-1 - robot
 		; If adding R-2 and R-3, also add robot-waiting facts below
 		o1 - order
-		wp1 - workpiece
-		cc1 cc2 cc3 - cap-carrier
+		wp1 wp2 - workpiece
+		cg1 cg2 cg3 cb1 cb2 cb3 - cap-carrier
 		C-BS C-CS1 C-CS2 C-DS C-RS1 C-RS2 - mps
 		CYAN - team-color
 	)
@@ -75,6 +75,12 @@
 	 (wp-ring2-color wp1 RING_NONE)
 	 (wp-ring3-color wp1 RING_NONE)
 	 (wp-unused wp1)
+	 (wp-base-color wp2 BASE_NONE)
+	 (wp-cap-color wp2 CAP_NONE)
+	 (wp-ring1-color wp2 RING_NONE)
+	 (wp-ring2-color wp2 RING_NONE)
+	 (wp-ring3-color wp2 RING_NONE)
+	 (wp-unused wp2)
 	 (robot-waiting R-1)
 	 ;(robot-waiting R-2)
 	 ;(robot-waiting R-3)
@@ -85,18 +91,29 @@
  	 (mps-state C-RS1 IDLE)
  	 (mps-state C-RS2 IDLE)
 
-	 (wp-cap-color cc1 CAP_GREY)
-	 (wp-cap-color cc2 CAP_GREY)
-	 (wp-cap-color cc3 CAP_GREY)
-	 (wp-on-shelf cc1 C-CS1 LEFT)
-	 (wp-on-shelf cc2 C-CS1 MIDDLE)
-	 (wp-on-shelf cc3 C-CS1 RIGHT)
+	 (wp-cap-color cg1 CAP_GREY)
+	 (wp-cap-color cg2 CAP_GREY)
+	 (wp-cap-color cg3 CAP_GREY)
+	 (wp-on-shelf cg1 C-CS1 LEFT)
+	 (wp-on-shelf cg2 C-CS1 MIDDLE)
+	 (wp-on-shelf cg3 C-CS1 RIGHT)
+
+	 (wp-cap-color cb1 CAP_BLACK)
+	 (wp-cap-color cb2 CAP_BLACK)
+	 (wp-cap-color cb3 CAP_BLACK)
+	 (wp-on-shelf cb1 C-CS2 LEFT)
+	 (wp-on-shelf cb2 C-CS2 MIDDLE)
+	 (wp-on-shelf cb3 C-CS2 RIGHT)
 
 	 (rs-ring-spec C-RS1 RING_GREEN ZERO)
 	 (rs-ring-spec C-RS1 RING_YELLOW ZERO)
 	 (rs-ring-spec C-RS2 RING_BLUE ONE)
 	 (rs-ring-spec C-RS2 RING_ORANGE TWO)
 
+	 ; C0 order
+	 ; (order-complexity o1 c0)
+	 ; (order-base-color o1 BASE_BLACK)
+	 ; (order-cap-color o1 CAP_GREY)
 
 	 ; C1 order
 	 ; (order-complexity o1 c1)
