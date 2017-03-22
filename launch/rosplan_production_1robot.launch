@@ -55,6 +55,7 @@
 	<node name="rosplan_kbupdater_machine_info" pkg="rosplan_interface_rcllrefbox"
         type="rosplan_kb_updater_rcll_machine_info" respawn="false" output="screen">
 		<remap from="rcll/machine_info" to="/robot1/rcll/machine_info" />
+		<remap from="rcll/ring_info" to="/robot1/rcll/ring_info" />
 	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_prepare_kbupdater_machine_info.yaml" />
 	</node>
 
