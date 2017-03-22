@@ -31,6 +31,7 @@
 		base-color - object
 		cap-color - object
 		ring-color - object
+		product-ring-color - ring-color
 		ds-gate - object
 		cs-operation - object
 		cs-statename - object
@@ -50,7 +51,8 @@
 		BASE_NONE BASE_RED BASE_BLACK BASE_SILVER - base-color
 		CAP_NONE CAP_BLACK CAP_GREY - cap-color
 		GATE-1 GATE-2 GATE-3 - ds-gate
-		RING_NONE RING_BLUE RING_GREEN RING_ORANGE RING_YELLOW - ring-color
+		RING_NONE - ring-color
+		RING_BLUE RING_GREEN RING_ORANGE RING_YELLOW - product-ring-color
 		CS_RETRIEVE CS_MOUNT - cs-operation
 		C0 C1 C2 C3 - order-complexity-value
 		LEFT MIDDLE RIGHT - shelf-spot
@@ -68,21 +70,21 @@
 		(mps-state ?m - mps ?s - mps-statename)
 		(bs-prepared-color ?m - mps ?col - base-color)
 		(bs-prepared-side ?m - mps ?side - mps-side)
-		(rs-ring-spec ?m - mps ?r - ring-color ?rn - ring-num)
+		(rs-ring-spec ?m - mps ?r - product-ring-color ?rn - ring-num)
 		(cs-can-perform ?m - mps ?op - cs-operation)
 		(cs-prepared-for ?m - mps ?op - cs-operation)
 		(cs-buffered ?m - mps ?col - cap-color)
 		(cs-free ?m - mps)
-		(rs-prepared-color ?m - mps ?col - ring-color)
+		(rs-prepared-color ?m - mps ?col - product-ring-color)
 		(rs-filled-with ?m - mps ?n - ring-num)
 		; These must be static predicates stating the legal ring-num operations
 		(rs-sub ?minuend ?subtrahend ?difference - ring-num)
 		(rs-inc ?summand ?sum - ring-num)
 		(order-complexity ?ord - order ?com - order-complexity-value)
 		(order-base-color ?ord - order ?col - base-color)
-		(order-ring1-color ?ord - order ?col - ring-color)
-		(order-ring2-color ?ord - order ?col - ring-color)
-		(order-ring3-color ?ord - order ?col - ring-color)
+		(order-ring1-color ?ord - order ?col - product-ring-color)
+		(order-ring2-color ?ord - order ?col - product-ring-color)
+		(order-ring3-color ?ord - order ?col - product-ring-color)
 		(order-cap-color ?ord - order ?col - cap-color)
 		(order-fulfilled ?ord - order)
 		(order-delivery-begin ?ord - order)
@@ -179,7 +181,7 @@
 	)
 
 	(:durative-action rs-mount-ring1
-		:parameters (?m - mps ?wp - workpiece ?col - ring-color ?rs-before ?rs-after ?r-req - ring-num)
+		:parameters (?m - mps ?wp - workpiece ?col - product-ring-color ?rs-before ?rs-after ?r-req - ring-num)
 		:duration (= ?duration 0)				 
 		:condition (and (at start (mps-type ?m RS)) (at start (mps-state ?m PROCESSING))
 										(at start (wp-at ?wp ?m INPUT)) (at start (wp-usable ?wp))
@@ -197,10 +199,12 @@
 	)
 
 	(:durative-action rs-mount-ring2
-		:parameters (?m - mps ?wp - workpiece ?col - ring-color ?rs-before ?rs-after ?r-req - ring-num)
+		:parameters (?m - mps ?wp - workpiece ?col - product-ring-color ?col1 - product-ring-color
+		             ?rs-before ?rs-after ?r-req - ring-num)
 		:duration (= ?duration 0)				 
 		:condition (and (at start (mps-type ?m RS)) (at start (mps-state ?m PROCESSING))
 										(at start (wp-at ?wp ?m INPUT)) (at start (wp-usable ?wp))
+										(at start (wp-ring1-color ?wp ?col1))
 										(at start (wp-ring2-color ?wp RING_NONE))
 										(at start (wp-cap-color ?wp CAP_NONE))
 										(at start (rs-prepared-color ?m ?col))
@@ -215,10 +219,13 @@
 	)
 
 	(:durative-action rs-mount-ring3
-		:parameters (?m - mps ?wp - workpiece ?col - ring-color ?rs-before ?rs-after ?r-req - ring-num)
+		:parameters (?m - mps ?wp - workpiece ?col - product-ring-color  ?col1 ?col2 - product-ring-color
+		             ?rs-before ?rs-after ?r-req - ring-num)
 		:duration (= ?duration 0)				 
 		:condition (and (at start (mps-type ?m RS)) (at start (mps-state ?m PROCESSING))
 										(at start (wp-at ?wp ?m INPUT)) (at start (wp-usable ?wp))
+										(at start (wp-ring1-color ?wp ?col1))
+										(at start (wp-ring2-color ?wp ?col2))
 										(at start (wp-ring3-color ?wp RING_NONE))
 										(at start (wp-cap-color ?wp CAP_NONE))
 										(at start (rs-prepared-color ?m ?col))
@@ -368,7 +375,7 @@
 	(:action fulfill-order-c1
 		:parameters (?ord - order ?wp - workpiece ?m - mps
 		             ?basecol - base-color ?capcol - cap-color
-		             ?ring1col - ring-color)
+		             ?ring1col - product-ring-color)
 
 		:precondition (and (wp-at ?wp ?m INPUT) (wp-usable ?wp)
 											 (mps-type ?m DS) (mps-state ?m PROCESSING)
@@ -383,7 +390,7 @@
 	(:action fulfill-order-c2
 		:parameters (?ord - order ?wp - workpiece ?m - mps
 		             ?basecol - base-color ?capcol - cap-color
-		             ?ring1col - ring-color ?ring2col - ring-color)
+		             ?ring1col ?ring2col - product-ring-color)
 
 		:precondition (and (wp-at ?wp ?m INPUT) (wp-usable ?wp)
 											 (mps-type ?m DS) (mps-state ?m PROCESSING)
@@ -401,7 +408,7 @@
 	(:action fulfill-order-c3
 		:parameters (?ord - order ?wp - workpiece ?m - mps
 		             ?basecol - base-color ?capcol - cap-color
-		             ?ring1col - ring-color ?ring2col - ring-color ?ring3col - ring-color)
+		             ?ring1col ?ring2col ?ring3col - product-ring-color)
 
 		:precondition (and (wp-at ?wp ?m INPUT) (wp-usable ?wp)
 											 (mps-type ?m DS) (mps-state ?m PROCESSING)
