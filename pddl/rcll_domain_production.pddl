@@ -105,6 +105,11 @@
 		(wp-on-shelf ?wp - workpiece ?m - mps ?spot - shelf-spot)
 	)
 
+	(:functions
+		(order-delivery-begin ?ord - order)
+		(order-delivery-end   ?ord - order)
+	)
+
 	; The following static predicates are required in the problem
   ; to properly handle additional bases:
 	; (rs-sub THREE TWO ONE)
