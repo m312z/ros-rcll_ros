@@ -16,11 +16,7 @@
 #  - parameter value
 # These elements are described in the following.
 #
-# The configuration key or path element is the PDDL operator name. If
-# the name contains dashes (-), they are replaced by an underscores (_)
-# each. This is because rosparam cannot handle dashes in parameter
-# path elements. For example, for an action "mark-visited" the parameter
-# path would be "mark_visited".
+# The configuration key or path element is the PDDL operator name.
 #
 # The mapping value can use the following elements as a pattern
 # modification for the skill string.
@@ -65,25 +61,29 @@
 # Param: move: ppgoto{place=?(to)S}
 # Examples: (move R-1 START C-BS-I) -> ppgoto{place="C-BS-I"}
 #
-# PDDL: (enter_field ?r - robot ?team-color - team-color)
-# Param: enter_field: drive_into_field{team=?(team-color)S, wait=?(r|/R-1/0.0/|/R-2/3.0/|/R-3/6.0/)f}
+# PDDL: (enter-field ?r - robot ?team-color - team-color)
+# Param: enter-field: drive_into_field{team=?(team-color)S, wait=?(r|/R-1/0.0/|/R-2/3.0/|/R-3/6.0/)f}
 # Examples: (enter_field R-1 CYAN) -> drive_into_field{team="CYAN", wait=0.000000}
 #           (enter_field R-2 CYAN) -> drive_into_field{team="CYAN", wait=3.000000}
 # Note: the chaining of regular expressions to fill in a parameter based on
 # the specific value of another parameter. You can also see that arguments
 # can be referenced more than once.
 
-action_mappings:
+action_mapping:
   move: ppgoto{place="?(to)Y?(to-side|/INPUT/-I/|/OUTPUT/-O/)Y"}
-  move_wp_put: ppgoto{place="?(to)Y-I"}
-  move_wp_get: ppgoto{place="?(to)Y?(to-side|/INPUT/-I/|/OUTPUT/-O/)Y"}
+  move-wp-put: ppgoto{place="?(to)Y-I"}
+  move-wp-get: ppgoto{place="?(to)Y?(to-side|/INPUT/-I/|/OUTPUT/-O/)Y"}
+  move-wp-put-slide-cc: ppgoto{place="?(to)Y-I"}
   #move: ppgoto{place=?(to)S}
-  enter_field: drive_into_field{team=?(team-color)S, wait=?(r|/r-1/0.0/|/r-2/3.0/|/r-3/6.0/)f}
+  enter-field: drive_into_field{team=?(team-color)S, wait=0.0}
   #, atmps="CONVEYOR"
-  wp_get_shelf: get_product_from{place=?(m)S, shelf=?(spot)S}
-  wp_put: bring_product_to{place=?(m)S, side="input"}
-  wp_get: get_product_from{place=?(m)S, side=?(side)s}
-  wp_discard: ax12gripper{command="OPEN"}
+  wp-get-shelf: get_product_from{place=?(m)S, shelf=?(spot)S}
+  wp-put: bring_product_to{place=?(m)S, side="input"}
+  wp-get: get_product_from{place=?(m)S, side=?(side)s}
+  wp-discard: ax12gripper{command="OPEN"}
+  wp-put-slide-cc: bring_product_to{place=?(m)S, side="input", slide=true, atmps="CONVEYOR"}
+
+  #enter_field: drive_into_field{team=?(team-color)S, wait=?(r|/r-1/0.0/|/r-2/3.0/|/r-3/6.0/)f}
 
 # = No-Op Action =
 # Some actions you may not want to pass to the BE but always want them to
