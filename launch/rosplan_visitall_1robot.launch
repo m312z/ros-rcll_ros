@@ -33,12 +33,9 @@
 	<!-- Load domain-specific action mapping -->
   <rosparam command="load" file="$(find rcll_ros)/config/rcll_action_mapping.yaml" />
   <!-- we need a simpler move command here -->
-  <param name="action_mappings/move" value="ppgoto{place=?(to)S}" />
+  <param name="action_mapping/move" value="ppgoto{place=?(to)S}" />
   <!-- In this domain, we have one effect-handling-only action -->
   <rosparam param="succeed_actions">[mark-visited]</rosparam>
-
-  <!-- Load predicates which the interface should not touch (assert/retract) -->
-  <rosparam command="load" file="$(find rcll_ros)/config/rcll_visitall_ignored_effect_predicates.yaml" />
 
   <!-- Parameter of action used to identify robot-specific actions -->
   <param name="robot_identifier/var_name" value="r" />
@@ -51,4 +48,11 @@
 	  <!-- The value of the identifier variable specified above to filter for -->
     <param name="robot_identifier/var_value" value="r-1" />
   </node>
+
+  <node name="rosplan_initial_situation" pkg="rosplan_initial_situation"
+        type="rosplan_initial_situation" respawn="false" output="screen">
+	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_visitall_initial_situation.yaml" />
+		<param name="clear_kb" value="true" />
+		<param name="start_planning" value="false" />
+	</node>
 </launch>
