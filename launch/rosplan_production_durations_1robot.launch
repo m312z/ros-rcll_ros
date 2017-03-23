@@ -34,7 +34,7 @@
   <rosparam command="load" file="$(find rcll_ros)/config/rcll_action_mapping.yaml" />
 
   <!-- Load predicates which the interface should not touch (assert/retract) -->
-  <rosparam command="load" file="$(find rcll_ros)/config/rcll_produce_c0_ignored_effect_predicates.yaml" />
+  <rosparam command="load" file="$(find rcll_ros)/config/rcll_ignored_effect_predicates.yaml" />
 
   <!-- Parameter of action used to identify robot-specific actions -->
 	<param name="robot_identifier/var_name" value="r" />
@@ -49,21 +49,20 @@
   <node name="rosplan_interface_rcllrefbox" pkg="rosplan_interface_rcllrefbox"
         type="rosplan_interface_rcllrefbox" respawn="false" output="screen">
 		<remap from="rcll/send_prepare_machine" to="/robot1/rcll/send_prepare_machine" />
-	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_produce_c0_ifc_rcllrefbox.yaml" />
+	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_ifc_rcllrefbox.yaml" />
 	</node>
 
 	<node name="rosplan_kbupdater_machine_info" pkg="rosplan_interface_rcllrefbox"
         type="rosplan_kb_updater_rcll_machine_info" respawn="false" output="screen">
 		<remap from="rcll/machine_info" to="/robot1/rcll/machine_info" />
-	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_prepare_kbupdater_machine_info.yaml" />
+	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_kbupdater_machine_info.yaml" />
 	</node>
 
-	<!--
 	<node name="rosplan_kbupdater_order_info" pkg="rosplan_interface_rcllrefbox"
         type="rosplan_kb_updater_rcll_order_info" respawn="false" output="screen">
 		<remap from="rcll/order_info" to="/robot1/rcll/order_info" />
-	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_produce_c0_kbupdater_order_info.yaml" />
-	</node> -->
+	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_kbupdater_order_info.yaml" />
+	</node>
 
   <node name="rosplan_initial_situation" pkg="rosplan_initial_situation"
         type="rosplan_initial_situation" respawn="false" output="screen">
@@ -82,6 +81,6 @@
   <node name="rosplan_kb_updater_navgraph" pkg="rosplan_interface_behaviorengine"
         type="rosplan_kb_updater_navgraph" respawn="false" output="screen">
 	  <remap from="rcll/machine_info" to="robot1/rcll/machine_info" />
-	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_production_navgraph.yaml" />
+	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_kbupdater_navgraph.yaml" />
   </node>
 </launch>
