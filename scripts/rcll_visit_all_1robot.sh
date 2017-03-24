@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Note that this script is no longer necessary using rosplan_initial_situation.
+# It is here as a reference should you prefer writing a (dynamic) script
+
 source $(dirname $(realpath $0))/rosplan_functions.sh
 
 INSTANCES="C-BS-I:machine C-DS-I:machine C-CS1-I:machine C-CS2-I:machine C-RS1-I:machine C-RS2-I:machine R-1:robot CYAN:team-color"
