@@ -135,14 +135,14 @@
 	)
 
 	(:action prepare-ds
-		:parameters (?m - mps ?gate - ds-gate)
-		:precondition (and (mps-type ?m DS) (mps-state ?m IDLE))
+		:parameters (?r - robot ?m - mps ?gate - ds-gate)
+		:precondition (and (at ?r ?m INPUT) (mps-type ?m DS) (mps-state ?m IDLE))
 		:effect (and (not (mps-state ?m IDLE)) (mps-state ?m PREPARED) (ds-prepared-gate ?m ?gate))
 	)
 
 	(:action prepare-cs
-		:parameters (?m - mps ?op - cs-operation)
-		:precondition (and (mps-type ?m CS) (mps-state ?m IDLE) (cs-can-perform ?m ?op))
+		:parameters (?r - robot ?m - mps ?op - cs-operation)
+		:precondition (and (at ?r ?m INPUT) (mps-type ?m CS) (mps-state ?m IDLE) (cs-can-perform ?m ?op))
 		:effect (and (not (mps-state ?m IDLE)) (mps-state ?m PREPARED)
 								 (not (cs-can-perform ?m ?op)) (cs-prepared-for ?m ?op))
 	)
@@ -185,8 +185,8 @@
 	)
 	
 	(:action prepare-rs
-		:parameters (?m - mps ?rc - product-ring-color ?rs-before ?rs-after ?r-req - ring-num)
-		:precondition (and (mps-type ?m RS) (mps-state ?m IDLE) (rs-ring-spec ?m ?rc ?r-req)
+		:parameters (?r - robot ?m - mps ?rc - product-ring-color ?rs-before ?rs-after ?r-req - ring-num)
+		:precondition (and (at ?r ?m INPUT) (mps-type ?m RS) (mps-state ?m IDLE) (rs-ring-spec ?m ?rc ?r-req)
 											 (rs-filled-with ?m ?rs-before) (rs-sub ?rs-before ?r-req ?rs-after))
 		:effect (and (not (mps-state ?m IDLE)) (mps-state ?m PREPARED)
 								 (rs-prepared-color ?m ?rc))
@@ -273,13 +273,13 @@
 	; either the retrieval or the delivery of a workpiece. While a more generic
 	; such as the one would be desirable, in typical test cases these specific
 	; actions cut the planning time by about 95%.
-	(:durative-action move-wp-put
+	(:durative-action move-wp-put-at-input
 		:parameters (?r - robot ?from - location ?from-side - mps-side ?to - mps)
 		:duration (= ?duration 0)
 		:condition (and (at start (entered-field ?r))
 										(at start (at ?r ?from ?from-side))
 										(at start (location-free ?to INPUT))
-										(at start (mps-state ?to PREPARED)))
+										(at start (mps-state ?to IDLE)))
 		:effect (and (at start (not (at ?r ?from ?from-side)))
 								 (at start (location-free ?from ?from-side))
 								 (at start (not (location-free ?to INPUT)))
