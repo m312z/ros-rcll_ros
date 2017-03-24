@@ -24,7 +24,7 @@
 		R-1 - robot
 		; If adding R-2 and R-3, also add robot-waiting facts below
 		o1 - order
-		wp1 wp2 - workpiece
+		wp1 - workpiece
 		cg1 cg2 cg3 cb1 cb2 cb3 - cap-carrier
 		C-BS C-CS1 C-CS2 C-DS C-RS1 C-RS2 - mps
 		CYAN - team-color
@@ -75,12 +75,6 @@
 	 (wp-ring2-color wp1 RING_NONE)
 	 (wp-ring3-color wp1 RING_NONE)
 	 (wp-unused wp1)
-	 (wp-base-color wp2 BASE_NONE)
-	 (wp-cap-color wp2 CAP_NONE)
-	 (wp-ring1-color wp2 RING_NONE)
-	 (wp-ring2-color wp2 RING_NONE)
-	 (wp-ring3-color wp2 RING_NONE)
-	 (wp-unused wp2)
 	 (robot-waiting R-1)
 	 ;(robot-waiting R-2)
 	 ;(robot-waiting R-3)
