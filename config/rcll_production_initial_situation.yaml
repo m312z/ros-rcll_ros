@@ -1,7 +1,7 @@
 objects:
   robot: R-1
   #order: o1
-  workpiece: [wp1, wp2]
+  workpiece: [wp1]
   cap-carrier: [cg1, cg2, cg3, cb1, cb2, cb3]
   mps: [C-BS, C-CS1, C-CS2, C-DS, C-RS1, C-RS2]
   team-color: CYAN
@@ -54,10 +54,8 @@ init:
     - [C-RS2, ZERO]
   wp-base-color:
     - [wp1, BASE_NONE]
-    - [wp2, BASE_NONE]
   wp-cap-color:
     - [wp1, CAP_NONE]
-    - [wp2, CAP_NONE]
     - [cg1, CAP_GREY]
     - [cg2, CAP_GREY]
     - [cg3, CAP_GREY]
@@ -66,14 +64,11 @@ init:
     - [cb3, CAP_BLACK]
   wp-ring1-color:
     - [wp1, RING_NONE]
-    - [wp2, RING_NONE]
   wp-ring2-color:
     - [wp1, RING_NONE]
-    - [wp2, RING_NONE]
   wp-ring3-color:
     - [wp1, RING_NONE]
-    - [wp2, RING_NONE]
-  wp-unused: [wp1, wp2]
+  wp-unused: [wp1]
     
   robot-waiting: [R-1]
   #, R-2, R-3]
