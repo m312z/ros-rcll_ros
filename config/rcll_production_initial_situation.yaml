@@ -86,12 +86,12 @@ init:
   #   - [C-RS2, IDLE]
 
   wp-on-shelf:
-    - [cg1, C-CS2, LEFT]
-    - [cg2, C-CS2, MIDDLE]
-    - [cg3, C-CS2, RIGHT]
-    - [cb1, C-CS1, LEFT]
-    - [cb2, C-CS1, MIDDLE]
-    - [cb3, C-CS1, RIGHT]
+    - [cg1, C-CS1, LEFT]
+    - [cg2, C-CS1, MIDDLE]
+    - [cg3, C-CS1, RIGHT]
+    - [cb1, C-CS2, LEFT]
+    - [cb2, C-CS2, MIDDLE]
+    - [cb3, C-CS2, RIGHT]
 
   # rs-ring-spec:
   #   - [C-RS1, RING_GREEN]
