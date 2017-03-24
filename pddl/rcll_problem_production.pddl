@@ -114,12 +114,14 @@
 	 ; (order-complexity o1 c0)
 	 ; (order-base-color o1 BASE_BLACK)
 	 ; (order-cap-color o1 CAP_GREY)
+	 ; (order-gate o1 GATE-1)
 
 	 ; C1 order
 	 ; (order-complexity o1 c1)
 	 ; (order-base-color o1 BASE_BLACK)
 	 ; (order-ring1-color o1 RING_GREEN)
 	 ; (order-cap-color o1 CAP_GREY)
+	 ; (order-gate o1 GATE-1)
 
 	 ; C2 order
 	 ; (order-complexity o1 C2)
@@ -135,6 +137,7 @@
 	 (order-ring2-color o1 RING_BLUE)
 	 (order-ring3-color o1 RING_ORANGE)
 	 (order-cap-color o1 CAP_GREY)
+	 (order-gate o1 GATE-1)
 	)
 
 	(:goal (order-fulfilled o1) )
