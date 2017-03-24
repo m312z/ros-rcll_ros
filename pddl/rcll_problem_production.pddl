@@ -124,20 +124,28 @@
 	 ; (order-gate o1 GATE-1)
 
 	 ; C2 order
-	 ; (order-complexity o1 C2)
-	 ; (order-base-color o1 BASE_BLACK)
-	 ; (order-ring1-color o1 RING_GREEN)
-	 ; (order-ring2-color o1 RING_BLUE)
-	 ; (order-cap-color o1 CAP_GREY)
-
-	 ; C3 order
-	 (order-complexity o1 C3)
+	 (order-complexity o1 C2)
 	 (order-base-color o1 BASE_BLACK)
 	 (order-ring1-color o1 RING_GREEN)
+	 ; considerably increases planning time
+	 ;(order-ring1-color o1 RING_ORANGE)
 	 (order-ring2-color o1 RING_BLUE)
-	 (order-ring3-color o1 RING_ORANGE)
 	 (order-cap-color o1 CAP_GREY)
 	 (order-gate o1 GATE-1)
+
+	 ; C3 order
+	 ; With a yellow second ring (2 additional bases required in total)
+	 ; solving here takes 5 seconds, with the blue ring (3 additional
+	 ; bases) it runs out of memory (that is with popf 32bit that comes
+	 ; ROSPlan)
+	 ; (order-complexity o1 C3)
+	 ; (order-base-color o1 BASE_BLACK)
+	 ; (order-ring1-color o1 RING_GREEN)
+	 ; ;(order-ring2-color o1 RING_YELLOW)
+	 ; (order-ring2-color o1 RING_BLUE)
+	 ; (order-ring3-color o1 RING_ORANGE)
+	 ; (order-cap-color o1 CAP_GREY)
+	 ; (order-gate o1 GATE-1)
 	)
 
 	(:goal (order-fulfilled o1) )
