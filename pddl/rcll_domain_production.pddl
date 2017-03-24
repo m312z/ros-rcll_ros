@@ -92,8 +92,6 @@
 		(order-ring3-color ?ord - order ?col - product-ring-color)
 		(order-cap-color ?ord - order ?col - product-cap-color)
 		(order-fulfilled ?ord - order)
-		(order-delivery-begin ?ord - order)
-		(order-delivery-end ?ord - order)
 		(order-gate ?ord - order ?gate - ds-gate)
 		(wp-unused ?wp - workpiece)
 		(wp-usable ?wp - workpiece)
