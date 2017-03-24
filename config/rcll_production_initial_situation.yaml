@@ -110,4 +110,4 @@ init:
 
 # To set a fixed goal uncomment:
 goal:
-  order-fulfilled: [o7]
+  order-fulfilled: [o1]
