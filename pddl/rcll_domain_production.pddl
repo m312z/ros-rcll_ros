@@ -300,42 +300,6 @@
 								 (at end (at ?r ?to ?to-side)))
 	)
 
-	; The difference to move-wp-put here is that the machine may be in any state
-  ; If we had negative preconditions, we could at least exclude DOWN or BROKEN states.
-	(:durative-action move-wp-put-slide-cc
-		:parameters (?r - robot ?from - location ?from-side - mps-side ?to - mps ?cc - cap-carrier)
-		:duration (= ?duration 0)
-		:condition (and (at start (mps-type ?to RS))
-										(at start (entered-field ?r))
-										(at start (at ?r ?from ?from-side))
-										(at start (location-free ?to INPUT))
-										(at start (holding ?r ?cc)))
-		:effect (and (at start (not (at ?r ?from ?from-side)))
-								 (at start (location-free ?from ?from-side))
-								 (at start (not (location-free ?to INPUT)))
-								 (at end (at ?r ?to INPUT)))
-	)
-
-	; We could actually allow for arbitrary or empty bases to be thrown onto
-	; the slide. However, this makes planning time much worse.
-	; (:durative-action move-wp-put-slide-empty-base
-	; 	:parameters (?r - robot ?from - location ?from-side - mps-side ?to - mps ?wp - workpiece)
-	; 	:duration (= ?duration 0)
-	; 	:condition (and (at start (mps-type ?to RS))
-	; 									(at start (entered-field ?r))
-	; 									(at start (at ?r ?from ?from-side))
-	; 									(at start (location-free ?to INPUT))
-	; 									(at start (holding ?r ?wp))
-	; 									(at start (wp-ring1-color ?wp RING_NONE))
-	; 									(at start (wp-ring2-color ?wp RING_NONE))
-	; 									(at start (wp-ring3-color ?wp RING_NONE))
-	; 									(at start (wp-cap-color ?wp CAP_NONE)))
-	; 	:effect (and (at start (not (at ?r ?from ?from-side)))
-	; 							 (at start (location-free ?from ?from-side))
-	; 							 (at start (not (location-free ?to INPUT)))
-	; 							 (at end (at ?r ?to INPUT)))
-	; )
-
 	(:durative-action enter-field
 		:parameters (?r - robot ?team-color - team-color)
 		:duration (= ?duration 0)
