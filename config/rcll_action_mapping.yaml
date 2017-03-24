@@ -73,6 +73,8 @@ action_mapping:
   move: ppgoto{place="?(to)Y?(to-side|/INPUT/-I/|/OUTPUT/-O/)Y"}
   move-wp-put: ppgoto{place="?(to)Y-I"}
   move-wp-get: ppgoto{place="?(to)Y?(to-side|/INPUT/-I/|/OUTPUT/-O/)Y"}
+  move-wp-put-at-input: ppgoto{place="?(to)Y-I"}
+  move-wp-get-at-output: ppgoto{place="?(to)Y-O"}
   move-wp-put-slide-cc: ppgoto{place="?(to)Y-I"}
   #move: ppgoto{place=?(to)S}
   enter-field: drive_into_field{team=?(team-color)S, wait=0.0}
