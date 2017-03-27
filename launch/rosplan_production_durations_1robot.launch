@@ -12,6 +12,8 @@
 	</node>
 
 	<!-- scene database (MongoDB) -->
+	<param name="mongodb_host" value="localhost" />
+	<param name="mongodb_port" value="27018" />
 	<node name="rosplan_scene_database" pkg="mongodb_store" type="mongodb_server.py" respawn="false" output="log">
 		<param name="database_path" value="$(find rosplan_knowledge_base)/common/mongoDB/" />
 	</node>
