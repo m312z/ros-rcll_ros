@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>rcll_ros</name>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
   <description>ROS packages related to RoboCup Logistics League (metapackage)</description>
 
   <author email="niemueller@kbsg.rwth-aachen.de">Tim Niemueller</author>
