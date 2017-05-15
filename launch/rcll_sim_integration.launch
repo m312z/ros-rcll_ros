@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<!-- Basic Simulation Integration -->
+<launch>
+
+	<arg name="num_robots" default="$(optenv NUM_ROBOTS 1)" />
+
+	<include file="$(find rcll_refbox_peer)/launch/rcll_refbox_peer.launch"
+	         ns="robot1" if="$(eval int(arg('num_robots')) >= 1)">
+		<arg name="team_name" value="$(optenv TEAM_NAME Carologistics)" />
+		<arg name="team_color" value="$(optenv TEAM_COLOR CYAN)" />
+		<arg name="robot_name" value="$(optenv ROBOT_1_NAME R-1)" />
+		<arg name="robot_number" value="1" />
+		<arg name="crypto_key" value="$(optenv TEAM_CRYPTO_KEY randomkey)" />
+		<arg name="peer_address" default="$(optenv REFBOX_PEER_ADDRESS 127.0.0.1)" />
+		<arg name="peer_public_recv_port" default="$(optenv REFBOX_PEER_PUBLIC_RECV_PORT 4411)" />
+		<arg name="peer_public_send_port" default="$(optenv REFBOX_PEER_PUBLIC_SEND_PORT 4421)" />
+		<arg name="peer_cyan_recv_port" default="$(optenv REFBOX_PEER_CYAN_RECV_PORT 4451)" />
+		<arg name="peer_cyan_send_port" default="$(optenv REFBOX_PEER_CYAN_SEND_PORT 4471)" />
+		<arg name="peer_magenta_recv_port" default="$(optenv REFBOX_PEER_MAGENTA_RECV_PORT 4461)" />
+		<arg name="peer_magenta_send_port" default="$(optenv REFBOX_PEER_MAGENTA_SEND_PORT 4481)" />
+	</include>
+
+	<include file="$(find rcll_refbox_peer)/launch/rcll_refbox_peer.launch"
+	         ns="robot2" if="$(eval int(arg('num_robots')) >= 2)">
+		<arg name="team_name" value="$(optenv TEAM_NAME Carologistics)" />
+		<arg name="team_color" value="$(optenv TEAM_COLOR CYAN)" />
+		<arg name="robot_name" value="$(optenv ROBOT_2_NAME R-2)" />
+		<arg name="robot_number" value="2" />
+		<arg name="crypto_key" value="$(optenv TEAM_CRYPTO_KEY randomkey)" />
+		<arg name="peer_address" default="$(optenv REFBOX_PEER_ADDRESS 127.0.0.1)" />
+		<arg name="peer_public_recv_port" default="$(optenv REFBOX_PEER_PUBLIC_RECV_PORT 4412)" />
+		<arg name="peer_public_send_port" default="$(optenv REFBOX_PEER_PUBLIC_SEND_PORT 4422)" />
+		<arg name="peer_cyan_recv_port" default="$(optenv REFBOX_PEER_CYAN_RECV_PORT 4452)" />
+		<arg name="peer_cyan_send_port" default="$(optenv REFBOX_PEER_CYAN_SEND_PORT 4472)" />
+		<arg name="peer_magenta_recv_port" default="$(optenv REFBOX_PEER_MAGENTA_RECV_PORT 4462)" />
+		<arg name="peer_magenta_send_port" default="$(optenv REFBOX_PEER_MAGENTA_SEND_PORT 4482)" />
+	</include>
+
+	<include file="$(find rcll_refbox_peer)/launch/rcll_refbox_peer.launch"
+	         ns="robot3" if="$(eval int(arg('num_robots')) >= 3)">
+		<arg name="team_name" value="$(optenv TEAM_NAME Carologistics)" />
+		<arg name="team_color" value="$(optenv TEAM_COLOR CYAN)" />
+		<arg name="robot_name" value="$(optenv ROBOT_3_NAME R-3)" />
+		<arg name="robot_number" value="3" />
+		<arg name="crypto_key" value="$(optenv TEAM_CRYPTO_KEY randomkey)" />
+		<arg name="peer_address" default="$(optenv REFBOX_PEER_ADDRESS 127.0.0.1)" />
+		<arg name="peer_public_recv_port" default="$(optenv REFBOX_PEER_PUBLIC_RECV_PORT 4413)" />
+		<arg name="peer_public_send_port" default="$(optenv REFBOX_PEER_PUBLIC_SEND_PORT 4423)" />
+		<arg name="peer_cyan_recv_port" default="$(optenv REFBOX_PEER_CYAN_RECV_PORT 4453)" />
+		<arg name="peer_cyan_send_port" default="$(optenv REFBOX_PEER_CYAN_SEND_PORT 4473)" />
+		<arg name="peer_magenta_recv_port" default="$(optenv REFBOX_PEER_MAGENTA_RECV_PORT 4463)" />
+		<arg name="peer_magenta_send_port" default="$(optenv REFBOX_PEER_MAGENTA_SEND_PORT 4483)" />
+	</include>
+
+	<include file="$(find rcll_fawkes_sim)/launch/rcll_fawkes_sim.launch"
+	         ns="robot1" if="$(eval int(arg('num_robots')) >= 1)">
+		<arg name="robot_number" value="1" />
+		<arg name="fawkes_host" default="$(optenv FAWKES_HOST 127.0.0.1)" />
+		<arg name="fawkes_port" default="$(optenv FAWKES_PORT 1921)" />
+	</include>
+
+	<include file="$(find rcll_fawkes_sim)/launch/rcll_fawkes_sim.launch"
+	         ns="robot2" if="$(eval int(arg('num_robots')) >= 2)">
+		<arg name="robot_number" value="2" />
+		<arg name="fawkes_host" default="$(optenv FAWKES_HOST 127.0.0.1)" />
+		<arg name="fawkes_port" default="$(optenv FAWKES_PORT 1922)" />
+	</include>
+
+	<include file="$(find rcll_fawkes_sim)/launch/rcll_fawkes_sim.launch"
+	         ns="robot3" if="$(eval int(arg('num_robots')) >= 3)">
+		<arg name="robot_number" value="3" />
+		<arg name="fawkes_host" default="$(optenv FAWKES_HOST 127.0.0.1)" />
+		<arg name="fawkes_port" default="$(optenv FAWKES_PORT 1923)" />
+	</include>
+</launch>

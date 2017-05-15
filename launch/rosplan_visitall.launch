@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<launch>
+	<arg name="num_robots" default="$(optenv NUM_ROBOTS 1)" />
+
+	<include file="$(find rcll_ros)/launch/rosplan_planning_system.launch">
+		<arg name="pddl_domain_path" value="$(find rcll_ros)/pddl/rcll_domain_visit_all.pddl" />
+		<arg name="popf_anytime" value="true" />
+	</include>
+
+	<rosparam command="load" file="$(find rcll_ros)/config/rcll_action_mapping.yaml" />
+  <!-- we need a simpler move command here -->
+  <param name="action_mapping/move" value="ppgoto{place=?(to)S}" />
+  <!-- In this domain, we have one effect-handling-only action -->
+  <rosparam param="succeed_actions">[mark-visited]</rosparam>
+
+	<include file="$(find rcll_ros)/launch/rosplan_rcll_interface.launch">
+		<arg name="num_robots" value="$(arg num_robots)" />
+		<arg name="override_action_mapping" value="true" />
+		<arg name="disable_refbox_interface" value="true" />
+		<arg name="disable_navgraph_interface" value="true" />
+	</include>
+
+  <node name="rosplan_initial_situation" pkg="rosplan_initial_situation"
+        type="rosplan_initial_situation" respawn="false" output="screen">
+	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_visitall_initial_situation.yaml" />
+	  <rosparam command="load" file="$(find rcll_ros)/config/rcll_visitall_initial_situation_3robots.yaml"
+	            if="$(eval int(arg('num_robots')) >= 3)" />
+		<param name="clear_kb" value="true" />
+		<param name="start_planning" value="false" />
+	</node>
+</launch>

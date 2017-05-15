@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+	<arg name="num_robots" default="$(optenv NUM_ROBOTS 1)" />
+
+	<include file="$(find rcll_ros)/launch/rosplan_production_standalone.launch">
+		<arg name="num_robots" value="$(arg num_robots)" />
+	</include>
+
+  <node name="rqt" pkg="rqt_gui" type="rqt_gui" respawn="false" output="screen"
+	      args="--standalone rosplan_rqt.dispatcher.ROSPlanDispatcher" />
+</launch>

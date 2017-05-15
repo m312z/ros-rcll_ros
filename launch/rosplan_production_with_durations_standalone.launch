@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<launch>
+	<arg name="num_robots" default="$(optenv NUM_ROBOTS 1)" />
+
+	<include file="$(find rcll_ros)/launch/rcll_production_standalone.launch">
+		<arg name="num_robots" value="$(arg num_robots)" />
+		<arg name="pddl_domain_path" value="$(find rcll_ros)/pddl/rcll_domain_production_durations.pddl" />
+	</include>
+</launch>

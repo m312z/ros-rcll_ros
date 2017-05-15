@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+	<arg name="num_robots" default="$(optenv NUM_ROBOTS 1)" />
+
+	<include file="$(find rcll_ros)/launch/rcll_sim_integration.launch">
+		<arg name="num_robots" value="$(arg num_robots)" />
+	</include>
+
+	<include file="$(find rcll_ros)/launch/rosplan_visitall.launch">
+		<arg name="num_robots" value="$(arg num_robots)" />
+	</include>
+</launch>
