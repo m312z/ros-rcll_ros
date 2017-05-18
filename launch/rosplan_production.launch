@@ -3,6 +3,7 @@
 <launch>
 	<arg name="num_robots" default="$(optenv NUM_ROBOTS 1)" />
 	<arg name="pddl_domain_path" default="$(find rcll_ros)/pddl/rcll_domain_production.pddl" />
+	<arg name="autostart_planning" default="$(optenv AUTOSTART_PLANNING false)" />
 
 	<param name="DOMAINPATHTOSEE" value="$(arg pddl_domain_path)" />
 	
@@ -22,6 +23,12 @@
 	            if="$(eval int(arg('num_robots')) >= 3)" />
 		<param name="clear_kb" value="true" />
 		<param name="start_planning" value="false" />
+	</node>
+
+	<node name="rosplan_starter_rcll" pkg="rosplan_starter_rcll"
+	      type="rosplan_starter_rcll" respawn="false" output="screen"
+	      if="$(arg autostart_planning)">
+		<remap from="rcll/game_state" to="robot1/rcll/game_state" />
 	</node>
 
 </launch>
