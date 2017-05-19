@@ -7,11 +7,23 @@
 
 	<include file="$(find rcll_ros)/launch/rosplan_planning_system.launch">
 		<arg name="pddl_domain_path" value="$(arg pddl_domain_path)" />
-		<arg name="popf_anytime" value="true" />
+		<arg name="data_path" default="$(optenv ROSPLAN_DATA_PATH /tmp)" />
+		<arg name="problem_path" default="$(optenv ROSPLAN_PROBLEM_PATH /tmp/problem.pddl)" />
+		<arg name="strl_file_path" default="$(optenv ROSPLAN_STRL_PATH /tmp/plan.strl)" />
+		<arg name="mongodb_host" default="$(optenv ROSPLAN_MONGODB_HOST localhost)" />
+		<arg name="mongodb_port" default="$(optenv ROSPLAN_MONGODB_POR 27018)" />
+		<arg name="database_path" default="$(optenv ROSPLAN_MONGODB_DBDIR /opt/rosplan_kb" />
+		<arg name="max_dispatch_attempts" default="$(optenv ROSPLAN_MAX_DISPATCH_ATTEMPTS 2)" />
+		<!-- if planner command given, pass it on, otherwise don't set arg
+		   - to use default. In that case, popf_anytime will be in -->
+		<arg name="planner_command" default="$(env ROSPLAN_PLANNER_COMMAND)"
+		     if="$(eval optenv('ROSPLAN_PLANNER_COMMAND', '') != '')" />
+		<arg name="popf_anytime" value="$(optenv ROSPLAN_POPF_ANYTIME false)" />
+		<arg name="popf_timeout" value="$(optenv ROSPLAN_POPF_TIMEOUT 30)" />
 	</include>
 
 	<include file="$(find rcll_ros)/launch/rosplan_rcll_interface.launch">
-	<arg name="num_robots" value="$(arg num_robots)" />
+		<arg name="num_robots" value="$(arg num_robots)" />
 	</include>
 
   <node name="rosplan_initial_situation" pkg="rosplan_initial_situation"
