@@ -49,12 +49,13 @@
 	      pkg="mongodb_store" type="mongodb_server.py"
 	      respawn="false" output="log">
 		<param name="database_path" value="$(arg database_path)" />
-		<param name="local_timeout" value="300" />
 	</node>
 
 	<node name="rosplan_scene_message_store"
 	      pkg="mongodb_store" type="message_store_node.py"
-	      respawn="false" output="log" />
+	      respawn="false" output="log">
+		<param name="local_timeout" value="300" />
+  </node>
 
 	<node name="rosplan_planning_system"
 	      pkg="rosplan_planning_system" type="planner"
