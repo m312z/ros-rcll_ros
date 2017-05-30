@@ -5,6 +5,7 @@
 
 	<arg name="num_robots" default="$(optenv NUM_ROBOTS 1)" />
 	<arg name="navgraph_file" default="$(optenv NAVGRAPH_FILE /tmp/navgraph-generated.yaml)" />
+	<arg name="disable_beacon_sender" default="$(optenv DISABLE_BEACON_SENDER false)" />
 
 	<include file="$(find rcll_refbox_peer)/launch/rcll_refbox_peer.launch"
 	         ns="robot1" if="$(eval int(arg('num_robots')) >= 1)">
@@ -60,6 +61,7 @@
 		<arg name="fawkes_host" value="$(optenv FAWKES_HOST_1 127.0.0.1)" />
 		<arg name="fawkes_port" value="$(optenv FAWKES_PORT_1 1921)" />
 		<arg name="navgraph_file" default="$(arg navgraph_file)" />
+		<arg name="disable_beacon_sender" default="$(arg disable_beacon_sender)" />
 	</include>
 
 	<include file="$(find rcll_fawkes_sim)/launch/rcll_fawkes_sim.launch"
@@ -68,6 +70,7 @@
 		<arg name="fawkes_host" value="$(optenv FAWKES_HOST_2 127.0.0.1)" />
 		<arg name="fawkes_port" value="$(optenv FAWKES_PORT_2 1922)" />
 		<arg name="disable_navgraph" value="true" />
+		<arg name="disable_beacon_sender" default="$(arg disable_beacon_sender)" />
 	</include>
 
 	<include file="$(find rcll_fawkes_sim)/launch/rcll_fawkes_sim.launch"
@@ -76,5 +79,6 @@
 		<arg name="fawkes_host" value="$(optenv FAWKES_HOST_3 127.0.0.1)" />
 		<arg name="fawkes_port" value="$(optenv FAWKES_PORT_3 1923)" />
 		<arg name="disable_navgraph" value="true" />
+		<arg name="disable_beacon_sender" default="$(arg disable_beacon_sender)" />
 	</include>
 </launch>
