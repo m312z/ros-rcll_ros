@@ -1,0 +1,58 @@
+# This contains just the modifications to the base configuration
+# required to operate as team MAGENTA.
+# Note that the modifications are not additive but the values
+# overwrite and replace the values in the base configuration.
+objects:
+  mps: [M-BS, M-CS1, M-CS2, M-DS, M-RS1, M-RS2]
+  team-color: MAGENTA
+
+init:
+  mps-type:
+    - [M-BS, BS]
+    - [M-CS1, CS]
+    - [M-CS2, CS]
+    - [M-DS, DS]
+    - [M-RS1, RS]
+    - [M-RS2, RS]
+
+  location-free:
+    - [START, INPUT]
+    - [M-BS,  INPUT]
+    - [M-BS,  OUTPUT]
+    - [M-CS1, INPUT]
+    - [M-CS1, OUTPUT]
+    - [M-CS2, INPUT]
+    - [M-CS2, OUTPUT]
+    - [M-DS,  INPUT]
+    - [M-DS,  OUTPUT]
+    - [M-RS1, INPUT]
+    - [M-RS1, OUTPUT]
+    - [M-RS2, INPUT]
+    - [M-RS2, OUTPUT]
+
+  cs-can-perform:
+    - [M-CS1, CS_RETRIEVE]
+    - [M-CS2, CS_RETRIEVE]
+
+  cs-free:
+    - M-CS1
+    - M-CS2
+
+  rs-filled-with:
+    - [M-RS1, ZERO]
+    - [M-RS2, ZERO]
+
+  wp-on-shelf:
+    - [cg1, M-CS1, LEFT]
+    - [cg2, M-CS1, MIDDLE]
+    - [cg3, M-CS1, RIGHT]
+    - [cb1, M-CS2, LEFT]
+    - [cb2, M-CS2, MIDDLE]
+    - [cb3, M-CS2, RIGHT]
+
+  # This is set through rosplan_kb_updater_machine_info
+  # rs-ring-spec:
+  #   - [M-RS1, RING_GREEN]
+  #   - [M-RS1, RING_YELLOW]
+  #   - [M-RS2, RING_BLUE]
+  #   - [M-RS2, RING_ORANGE]

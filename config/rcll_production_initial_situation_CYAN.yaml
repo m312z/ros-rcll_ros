@@ -1,0 +1,58 @@
+# This contains just the modifications to the base configuration
+# required to operate as team CYAN.
+# Note that the modifications are not additive but the values
+# overwrite and replace the values in the base configuration.
+objects:
+  mps: [C-BS, C-CS1, C-CS2, C-DS, C-RS1, C-RS2]
+  team-color: CYAN
+
+init:
+  mps-type:
+    - [C-BS, BS]
+    - [C-CS1, CS]
+    - [C-CS2, CS]
+    - [C-DS, DS]
+    - [C-RS1, RS]
+    - [C-RS2, RS]
+
+  location-free:
+    - [START, INPUT]
+    - [C-BS,  INPUT]
+    - [C-BS,  OUTPUT]
+    - [C-CS1, INPUT]
+    - [C-CS1, OUTPUT]
+    - [C-CS2, INPUT]
+    - [C-CS2, OUTPUT]
+    - [C-DS,  INPUT]
+    - [C-DS,  OUTPUT]
+    - [C-RS1, INPUT]
+    - [C-RS1, OUTPUT]
+    - [C-RS2, INPUT]
+    - [C-RS2, OUTPUT]
+
+  cs-can-perform:
+    - [C-CS1, CS_RETRIEVE]
+    - [C-CS2, CS_RETRIEVE]
+
+  cs-free:
+    - C-CS1
+    - C-CS2
+
+  rs-filled-with:
+    - [C-RS1, ZERO]
+    - [C-RS2, ZERO]
+
+  wp-on-shelf:
+    - [cg1, C-CS1, LEFT]
+    - [cg2, C-CS1, MIDDLE]
+    - [cg3, C-CS1, RIGHT]
+    - [cb1, C-CS2, LEFT]
+    - [cb2, C-CS2, MIDDLE]
+    - [cb3, C-CS2, RIGHT]
+
+  # This is set through rosplan_kb_updater_machine_info
+  # rs-ring-spec:
+  #   - [C-RS1, RING_GREEN]
+  #   - [C-RS1, RING_YELLOW]
+  #   - [C-RS2, RING_BLUE]
+  #   - [C-RS2, RING_ORANGE]
