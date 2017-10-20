@@ -15,6 +15,7 @@
 	<arg name="popf_anytime" default="$(optenv ROSPLAN_POPF_ANYTIME false)" />
 	<arg name="popf_timeout" default="$(optenv ROSPLAN_POPF_TIMEOUT 30)" />
   <arg name="disable_travel_durations" default="$(optenv DISABLE_TRAVEL_DURATIONS true)" />
+  <arg name="planning_start_delay" default="$(optenv PLANNING_START_DELAY 2.0)" />
 
 	<include file="$(find rcll_ros)/launch/rosplan_planning_system.launch">
 		<arg name="pddl_domain_path" value="$(arg pddl_domain_path)" />
@@ -53,6 +54,7 @@
 	      type="rosplan_starter_rcll" respawn="false" output="screen"
 	      if="$(arg autostart_planning)">
 		<remap from="rcll/game_state" to="robot1/rcll/game_state" />
+		<param name="delay" value="$(arg planning_start_delay)" />
 	</node>
 
 </launch>
