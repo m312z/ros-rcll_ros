@@ -3,7 +3,7 @@
 <launch>
 	<arg name="num_robots" default="$(optenv NUM_ROBOTS 1)" />
 	<arg name="team_color" value="$(optenv TEAM_COLOR CYAN)" />
-	<arg name="pddl_domain_path" default="$(find rcll_ros)/pddl/rcll_domain_production.pddl" />
+	<arg name="pddl_domain_path" default="$(eval optenv('ROSPLAN_DOMAIN_PATH', find('rcll_ros')+'/pddl/rcll_domain_production.pddl'))" />
 	<arg name="autostart_planning" default="$(optenv AUTOSTART_PLANNING false)" />
 	<arg name="data_path" default="$(optenv ROSPLAN_DATA_PATH /tmp)" />
 	<arg name="problem_path" default="$(optenv ROSPLAN_PROBLEM_PATH /tmp/problem.pddl)" />
