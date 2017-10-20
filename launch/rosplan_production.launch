@@ -14,6 +14,7 @@
 	<arg name="max_dispatch_attempts" default="$(optenv ROSPLAN_MAX_DISPATCH_ATTEMPTS 2)" />
 	<arg name="popf_anytime" default="$(optenv ROSPLAN_POPF_ANYTIME false)" />
 	<arg name="popf_timeout" default="$(optenv ROSPLAN_POPF_TIMEOUT 30)" />
+  <arg name="disable_travel_durations" default="$(optenv DISABLE_TRAVEL_DURATIONS true)" />
 
 	<include file="$(find rcll_ros)/launch/rosplan_planning_system.launch">
 		<arg name="pddl_domain_path" value="$(arg pddl_domain_path)" />
@@ -34,6 +35,7 @@
 
 	<include file="$(find rcll_ros)/launch/rosplan_rcll_interface.launch">
 		<arg name="num_robots" value="$(arg num_robots)" />
+    <arg name="disable_navgraph_interface" value="$(arg disable_travel_durations)" />
 	</include>
 
   <node name="rosplan_initial_situation" pkg="rosplan_initial_situation"
