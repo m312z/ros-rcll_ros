@@ -65,6 +65,7 @@
         unless="$(arg disable_navgraph_interface)">
     <remap from="rcll/machine_info" to="robot1/rcll/machine_info" />
     <remap from="navgraph/get_pairwise_costs" to="robot1/navgraph/get_pairwise_costs" />
+    <remap from="navgraph" to="robot1/navgraph" />
     <rosparam command="load" file="$(find rcll_ros)/config/rcll_kbupdater_navgraph.yaml" />
   </node>
 </launch>
