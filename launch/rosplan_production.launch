@@ -17,7 +17,9 @@
 		<arg name="database_path" value="$(arg database_path)" />
 	</include>
 
-	<node name="rosplan_interface_strategic" pkg="rosplan_interface_strategic" type="rpstrategiccontrol" respawn="false" output="screen"></node>
+	<node name="rosplan_interface_strategic" pkg="rosplan_interface_strategic" type="rpstrategiccontrol" respawn="false" output="screen">
+		<remap from="/rosplan_interface_strategic/rcll/game_state" to="/robot1/rcll/game_state" />
+	</node>
 
 	<include file="$(find rcll_ros)/launch/rosplan_rcll_interface.launch">
 		<arg name="num_robots" value="$(arg num_robots)" />
